@@ -1,5 +1,5 @@
 import { MaterialIcons, Feather, Ionicons } from "@expo/vector-icons";
-import { View,Text,Image } from "react-native";
+import { View, Text, Image } from "react-native";
 
 const weatherStats = [
   {
@@ -37,46 +37,42 @@ const weatherStats = [
 ];
 
 const WeatherStatsGrid = () => {
-    return (
-      <View className="mt-10 gap-2">
-        {Array.from({ length: Math.ceil(weatherStats.length / 2) }).map(
-          (_, rowIndex) => (
-            <View key={rowIndex} className="flex-row gap-2">
-              {weatherStats
-                .slice(rowIndex * 2, rowIndex * 2 + 2)
-                .map((stat, index) => (
+  return (
+    <View className="mt-10 gap-2">
+      {Array.from({ length: Math.ceil(weatherStats.length / 2) }).map(
+        (_, rowIndex) => (
+          <View key={rowIndex} className="flex-row gap-2">
+            {weatherStats
+              .slice(rowIndex * 2, rowIndex * 2 + 2)
+              .map((stat, index) => (
+                <View
+                  key={index}
+                  className="w-1/2 p-4 bg-white rounded-3xl shadow-xl gap-3 relative overflow-hidden"
+                >
+                  <Image
+                    className="absolute right-0 top-0"
+                    source={stat.smoke}
+                  />
                   <View
-                    key={index}
-                    className="w-1/2 p-4 bg-white rounded-3xl shadow-lg gap-3 relative overflow-hidden"
+                    style={{ backgroundColor: stat.bgColor }}
+                    className="w-14 h-14 items-center justify-center rounded-full shadow-xl"
                   >
-                    <Image
-                      className="absolute right-0 top-0"
-                      source={stat.smoke}
-                    />
-                    <View
-                      style={{ backgroundColor: stat.bgColor }}
-                      className="w-14 h-14 items-center justify-center rounded-full shadow-lg"
-                    >
-                      {stat.icon}
-                    </View>
-                    <View>
-                      <Text className="text-sm text-[#6B7280]">
-                        {stat.label}
-                      </Text>
-                      <Text className="text-3xl font-semibold">
-                        {stat.value}
-                      </Text>
-                      <Text className="text-sm text-[#6B7280]">
-                        {stat.description}
-                      </Text>
-                    </View>
+                    {stat.icon}
                   </View>
-                ))}
-            </View>
-          ),
-        )}
-      </View>
-    );
+                  <View>
+                    <Text className="text-sm text-[#6B7280]">{stat.label}</Text>
+                    <Text className="text-3xl font-semibold">{stat.value}</Text>
+                    <Text className="text-sm text-[#6B7280]">
+                      {stat.description}
+                    </Text>
+                  </View>
+                </View>
+              ))}
+          </View>
+        ),
+      )}
+    </View>
+  );
 };
 
 export default WeatherStatsGrid;

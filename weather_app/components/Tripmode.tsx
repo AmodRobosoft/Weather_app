@@ -1,8 +1,7 @@
-import React from 'react'
-import { Text, View } from 'react-native'
-import HourlyAtmosphere from './HourlyAtmosphere'
-import { Feather, Ionicons } from '@expo/vector-icons';
-
+import React from "react";
+import { Text, View } from "react-native";
+import HourlyAtmosphere from "./HourlyAtmosphere";
+import { Feather, Ionicons } from "@expo/vector-icons";
 
 const Tripmode = () => {
   return (
@@ -17,7 +16,7 @@ const Tripmode = () => {
         </Text>
       </View>
       <HourlyAtmosphere />
-      <View className="flex-row gap-4 p-4 bg-white shadow-lg rounded-3xl items-center border-[1px] border-gray-50">
+      <View className="flex-row gap-4 p-4 bg-white shadow-xl rounded-3xl items-center border-[1px] border-gray-50">
         <View>
           <Ionicons name="partly-sunny-outline" color="#FFBF00" size={30} />
         </View>
@@ -28,6 +27,6 @@ const Tripmode = () => {
       </View>
     </View>
   );
-}
+};
 
-export default Tripmode
+export default Tripmode;

@@ -1,9 +1,8 @@
 import React from "react";
-import {  Text, View } from "react-native";
+import { Text, View } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 
 const SavedClimate = () => {
-    
   const climates = [
     {
       city: "Tokyo",
@@ -31,7 +30,10 @@ const SavedClimate = () => {
 
       <View className="gap-4">
         {climates.map((item) => (
-          <View key={item.city} className="bg-white shadow-lg rounded-[25px] overflow-hidden border-gray-50/10 border-[1px]">
+          <View
+            key={item.city}
+            className="bg-white shadow-xl rounded-[25px] overflow-hidden border-gray-50/10 border-[1px]"
+          >
             <LinearGradient
               colors={item.gradientColors}
               start={{ x: 0, y: 0 }}

@@ -1,79 +1,84 @@
-import { AntDesign, Entypo, EvilIcons, Feather, SimpleLineIcons } from '@expo/vector-icons';
-import { LinearGradient } from 'expo-linear-gradient';
-import React from 'react'
-import { View, Text, TextInput, ScrollView } from 'react-native'
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import {
+  AntDesign,
+  Entypo,
+  EvilIcons,
+  Feather,
+  SimpleLineIcons,
+} from "@expo/vector-icons";
+import { LinearGradient } from "expo-linear-gradient";
+import React from "react";
+import { View, Text, TextInput, ScrollView } from "react-native";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 const Search = () => {
-
-  const RECENT_SERCH = ["New York", "Paris", "Tokyo"]
- const CITIES = [
-   {
-     fav_city: [
-       {
-         city: "Tokyo",
-         contry: "Japan",
-         gradientColors: ["#F4A8FF99", "#FFD6A899"],
-         tempature: 31,
-         weather: "Clear",
-         isFav: true,
-       },
-       {
-         city: "Reykjavík",
-         contry: "Iceland",
-         gradientColors: ["#FEE685CC", "#FFA1AD80"],
-         tempature: 22,
-         weather: "Sunny",
-         isFav: true,
-       },
-     ],
-     trending: [
-       {
-         city: "Reykjavík",
-         contry: "Iceland",
-         gradientColors: ["#A2F4FDB2", "#51A2FF80"],
-         tempature: 22,
-         weather: "Sunny",
-         isFav: false,
-       },
-       {
-         city: "New York",
-         contry: "USA",
-         gradientColors: ["#BEDBFF99", "#74D4FF80"],
-         tempature: 27,
-         weather: "Cloudy",
-         isFav: false,
-       },
-       {
-         city: "London",
-         contry: "United Kingdom",
-         gradientColors: ["#E5E7EBB2", "#CAD5E280"],
-         tempature: 19,
-         weather: "Rainy",
-         isFav: false,
-       },
-       {
-         city: "Paris",
-         contry: "France",
-         gradientColors: ["#FFCCD399", "#FFD6A880"],
-         tempature: 24,
-         weather: "Partly Cloudy",
-         isFav: false,
-       },
-       {
-         city: "Sydney",
-         contry: "Australia",
-         gradientColors: ["#B8E6FEB2", "#5EE9B580"],
-         tempature: 29,
-         weather: "Clear",
-         isFav: false,
-       },
-     ],
-   },
- ];
+  const RECENT_SERCH = ["New York", "Paris", "Tokyo"];
+  const CITIES = [
+    {
+      fav_city: [
+        {
+          city: "Tokyo",
+          contry: "Japan",
+          gradientColors: ["#F4A8FF99", "#FFD6A899"],
+          tempature: 31,
+          weather: "Clear",
+          isFav: true,
+        },
+        {
+          city: "Reykjavík",
+          contry: "Iceland",
+          gradientColors: ["#FEE685CC", "#FFA1AD80"],
+          tempature: 22,
+          weather: "Sunny",
+          isFav: true,
+        },
+      ],
+      trending: [
+        {
+          city: "Reykjavík",
+          contry: "Iceland",
+          gradientColors: ["#A2F4FDB2", "#51A2FF80"],
+          tempature: 22,
+          weather: "Sunny",
+          isFav: false,
+        },
+        {
+          city: "New York",
+          contry: "USA",
+          gradientColors: ["#BEDBFF99", "#74D4FF80"],
+          tempature: 27,
+          weather: "Cloudy",
+          isFav: false,
+        },
+        {
+          city: "London",
+          contry: "United Kingdom",
+          gradientColors: ["#E5E7EBB2", "#CAD5E280"],
+          tempature: 19,
+          weather: "Rainy",
+          isFav: false,
+        },
+        {
+          city: "Paris",
+          contry: "France",
+          gradientColors: ["#FFCCD399", "#FFD6A880"],
+          tempature: 24,
+          weather: "Partly Cloudy",
+          isFav: false,
+        },
+        {
+          city: "Sydney",
+          contry: "Australia",
+          gradientColors: ["#B8E6FEB2", "#5EE9B580"],
+          tempature: 29,
+          weather: "Clear",
+          isFav: false,
+        },
+      ],
+    },
+  ];
 
   const insets = useSafeAreaInsets();
-   const TAB_BAR_HEIGHT = 70;
+  const TAB_BAR_HEIGHT = 70;
   return (
     <ScrollView
       contentContainerStyle={{
@@ -81,14 +86,16 @@ const Search = () => {
       }}
       contentContainerClassName="px-4 gap-5"
     >
-      <View>
-        <Text className="tracking-[3px] text-brand-text-secondary">
+      <View className="gap-4">
+        <Text className="text-brand-text-secondary tracking-[3px] font-semibold uppercase">
           LOCATIONS
         </Text>
-        <Text className="text-3xl font-bold">Find weather</Text>
+        <Text className="text-brand-text-primary font-bold text-3xl">
+          Find weather
+        </Text>
       </View>
       <View className="p-2 gap-2">
-        <View className="realtive bg-white rounded-full shadow-lg border-[1px] border-gray-50">
+        <View className="realtive bg-white rounded-full shadow-xl border-[1px] border-gray-50">
           <Feather
             className="absolute top-5 left-6"
             name="search"
@@ -96,7 +103,7 @@ const Search = () => {
             size={25}
           />
           <TextInput
-            className="pl-14 py-5 text-xl font-semibold"
+            className="pl-14 py-5 text-xl placeholder:text-brand-text-secondary"
             placeholder="City, country, or airport..."
           />
         </View>
@@ -109,9 +116,9 @@ const Search = () => {
             {RECENT_SERCH.map((recent) => (
               <View
                 key={recent}
-                className="bg-white shadow-lg border-[1px] border-gray-100 rounded-full"
+                className="bg-white shadow-xl border-[1px] border-gray-100 rounded-full"
               >
-                <Text className="px-6 py-4">{recent}</Text>
+                <Text className="px-6 py-4 font-semibold">{recent}</Text>
               </View>
             ))}
           </View>
@@ -123,7 +130,7 @@ const Search = () => {
               {CITIES[0].fav_city.map((city) => (
                 <View
                   key={city.city}
-                  className="bg-white shadow-lg rounded-[25px] overflow-hidden border-gray-100 border-[1px] "
+                  className="bg-white shadow-xl rounded-[25px] overflow-hidden border-gray-100 border-[1px] "
                 >
                   <LinearGradient
                     colors={city.gradientColors}
@@ -172,7 +179,7 @@ const Search = () => {
               {CITIES[0].trending.map((city) => (
                 <View
                   key={city.city}
-                  className="bg-white shadow-lg rounded-[25px] overflow-hidden border-gray-100 border-[1px] "
+                  className="bg-white shadow-xl rounded-[25px] overflow-hidden border-gray-100 border-[1px] "
                 >
                   <LinearGradient
                     colors={city.gradientColors}
@@ -217,6 +224,6 @@ const Search = () => {
       </View>
     </ScrollView>
   );
-}
+};
 
 export default Search;

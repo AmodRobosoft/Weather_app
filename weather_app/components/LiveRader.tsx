@@ -1,39 +1,51 @@
-import { AntDesign, Feather, FontAwesome, Ionicons, Octicons } from "@expo/vector-icons";
+import {
+  AntDesign,
+  Feather,
+  FontAwesome,
+  Ionicons,
+  Octicons,
+} from "@expo/vector-icons";
 import React, { useState } from "react";
-import { View, Text, TouchableOpacity, Pressable, ImageBackground, StyleSheet } from "react-native";
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  Pressable,
+  ImageBackground,
+  StyleSheet,
+} from "react-native";
 
 const LiveRader = () => {
+  const switchItems = [
+    {
+      name: "Rain",
+      icon: <Octicons name="stack" color="#000" size={20} />,
+    },
+    {
+      name: "Strom",
+      icon: <Octicons name="stack" color="#000" size={20} />,
+    },
+    {
+      name: "Wind",
+      icon: <Octicons name="stack" color="#000" size={20} />,
+    },
+  ];
 
-    const switchItems = [
-      {
-        name: "Rain",
-        icon: <Octicons name="stack" color="#000" size={20} />,
-      },
-      {
-        name: "Strom",
-        icon: <Octicons name="stack" color="#000" size={20} />,
-      },
-      {
-        name: "Wind",
-        icon: <Octicons name="stack" color="#000" size={20} />,
-      }
-    ];
+  const raindBands = [
+    {
+      band: "Light",
+      color: "#7AD0C7",
+    },
+    {
+      band: "Modarate",
+      color: "#061A6999",
+    },
+    {
+      band: "Heavy",
+      color: "#FF4D67B2",
+    },
+  ];
 
-    const raindBands = [
-      {
-        band: "Light",
-        color: "#7AD0C7",
-      },
-      {
-        band: "Modarate",
-        color: "#061A6999",
-      },
-      {
-        band: "Heavy",
-        color: "#FF4D67B2",
-      },
-    ];
-    
   return (
     <View className="w-full rounded-3xl gap-5">
       <View className="flex-row justify-between items-center">
@@ -86,40 +98,42 @@ const LiveRader = () => {
           </View>
         </View>
       </ImageBackground>
-      <View className="flex-row gap-2">
+      <View className="flex-row gap-2 w-full">
         {switchItems.map((item, index) => {
           return (
             <View
               key={item.name}
-              className="bg-white shadow-lg shadow-black items-center px-8 rounded-[25px] py-2"
+              className="flex-1 basis-0 bg-white shadow-xl shadow-black items-center px-6 rounded-[25px] py-2"
             >
               {item.icon}
-              <Text>{item.name}</Text>
+              <Text className="">{item.name}</Text>
             </View>
           );
         })}
       </View>
-      <View className="p-4 gap-2 bg-[#E5E7EB] rounded-[25px]">
+      <View className="p-4 gap-2 flex-row flex-wrap bg-[#E5E7EB] rounded-[25px]">
         <View className="flex-row gap-4">
           {raindBands.map((item, index) => (
             <View key={item.band} className="items-center gap-2">
               <View
                 style={{
                   backgroundColor: item.color,
-                          height: 8,
-                          borderRadius: 50,
-                  width:50
+                  height: 8,
+                  borderRadius: 50,
+                  width: 30,
                 }}
               />
-              <Text>{item.band}</Text>
+              <Text className="text-sm">{item.band}</Text>
             </View>
           ))}
         </View>
-        <Text className="text-xl flex-wrap">Rain band reaches Brooklyn in 45 min.</Text>
+        <Text className="text-wrap">
+          Rain band reaches Brooklyn in 45 min.
+        </Text>
       </View>
     </View>
   );
-}
+};
 
 const styles = StyleSheet.create({
   mapBg: {
@@ -130,4 +144,4 @@ const styles = StyleSheet.create({
     borderRadius: 24,
   },
 });
-export default LiveRader
+export default LiveRader;

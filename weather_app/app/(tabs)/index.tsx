@@ -1,15 +1,20 @@
-import React from 'react'
-import {FlatList, Image, Pressable, ScrollView, Text, View } from 'react-native'
-import { Feather, Ionicons, MaterialIcons, Octicons } from "@expo/vector-icons";
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import WeatherStatsGrid from '@/components/WeatherStatsGrid';
-import LiveRader from '@/components/LiveRader';
-import HourlyAtmosphere from '@/components/HourlyAtmosphere';
-import Tripmode from '@/components/Tripmode';
-import SavedClimate from '@/components/SavedClimate';
+import React from "react";
+import {
+  Image,
+  Pressable,
+  ScrollView,
+  Text,
+  View,
+} from "react-native";
+import { Octicons } from "@expo/vector-icons";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
+import WeatherStatsGrid from "@/components/WeatherStatsGrid";
+import LiveRader from "@/components/LiveRader";
+import HourlyAtmosphere from "@/components/HourlyAtmosphere";
+import Tripmode from "@/components/Tripmode";
+import SavedClimate from "@/components/SavedClimate";
 
 const HomeScreen = () => {
-
   const insets = useSafeAreaInsets();
   const TAB_BAR_HEIGHT = 70;
   return (
@@ -26,7 +31,7 @@ const HomeScreen = () => {
             className="absolute right-0 -top-3 "
             resizeMode="contain"
           />
-          <Text className="p-2 bg-white shadow-lg w-40 rounded-full mb-4">
+          <Text className="p-2 bg-white shadow-xl w-40 rounded-full mb-4">
             8% chance of rain
           </Text>
           <View className=" py-10  rounded-3xl ">
@@ -48,7 +53,7 @@ const HomeScreen = () => {
       </View>
 
       {/* Alert card */}
-      <View className="p-6 bg-white shadow-lg rounded-3xl gap-4 relative overflow-hidden">
+      <View className="p-6 bg-white shadow-xl rounded-3xl gap-4 relative overflow-hidden">
         <Image
           className="absolute right-0 top-0"
           source={require("../../assets/images/RedSmoke.png")}
@@ -69,17 +74,17 @@ const HomeScreen = () => {
         horizontal
         showsHorizontalScrollIndicator={false}
         pagingEnabled
-        contentContainerClassName=" gap-3  mt-10 overflow-hidden"
+        contentContainerClassName=" gap-3 mt-10 "
       >
         <View
           style={{ width: 300 }}
-          className="bg-white shadow-lg rounded-3xl p-4"
+          className="bg-white rounded-3xl p-4"
         >
           <LiveRader />
         </View>
         <View
           style={{ width: 300 }}
-          className="bg-white shadow-lg rounded-3xl p-4"
+          className="bg-white rounded-3xl p-4"
         >
           <Tripmode />
         </View>
@@ -87,6 +92,6 @@ const HomeScreen = () => {
       <SavedClimate />
     </ScrollView>
   );
-}
+};
 
 export default HomeScreen;
