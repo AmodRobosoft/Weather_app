@@ -1,66 +1,91 @@
 import { Feather } from "@expo/vector-icons";
-import React from "react";
-import { View, Text, FlatList, Pressable, ScrollView } from "react-native";
-const HourlyAtmosphere = () => {
+import React, { useState } from "react";
+import { View, Text, Pressable, ScrollView } from "react-native";
+
+
+interface PropsType {
+  setWeatherInfo?: React.Dispatch<
+    React.SetStateAction<{
+      temperature: number;
+      chanceOfRain: string;
+    }>
+  >;
+}
+
+
+
+
+const HourlyAtmosphere = ({ setWeatherInfo }: PropsType) => {
+  const [onClick, setOnClik] = useState(1);
   const forecastData = [
     {
+      id: 1,
       date: "Now",
       status: "Sunny",
-      temperature: "24",
+      temperature: 24,
       chanceOfRain: "2%",
     },
     {
+      id: 2,
       date: "1 PM",
       status: "Cloudy",
-      temperature: "23",
+      temperature: 23,
       chanceOfRain: "10%",
     },
     {
+      id: 3,
       date: "2 PM",
       status: "Rainy",
-      temperature: "22",
+      temperature: 22,
       chanceOfRain: "65%",
     },
     {
+      id: 4,
       date: "3 PM",
       status: "Rainy",
-      temperature: "21",
+      temperature: 21,
       chanceOfRain: "80%",
     },
     {
+      id: 5,
       date: "4 PM",
       status: "Cloudy",
-      temperature: "22",
+      temperature: 22,
       chanceOfRain: "35%",
     },
     {
+      id: 6,
       date: "5 PM",
       status: "Sunny",
-      temperature: "25",
+      temperature: 25,
       chanceOfRain: "5%",
     },
     {
+      id: 7,
       date: "6 PM",
       status: "Sunny",
-      temperature: "24",
+      temperature: 24,
       chanceOfRain: "3%",
     },
     {
+      id: 8,
       date: "7 PM",
       status: "Cloudy",
-      temperature: "22",
+      temperature: 22,
       chanceOfRain: "15%",
     },
     {
+      id: 9,
       date: "8 PM",
       status: "Rainy",
-      temperature: "20",
+      temperature: 20,
       chanceOfRain: "55%",
     },
     {
+      id: 10,
       date: "9 PM",
       status: "Cloudy",
-      temperature: "19",
+      temperature: 19,
       chanceOfRain: "20%",
     },
   ];
@@ -80,30 +105,50 @@ const HourlyAtmosphere = () => {
       <ScrollView
         horizontal
         showsHorizontalScrollIndicator={false}
-        contentContainerStyle={{ paddingHorizontal: 16, gap: 12 }}
+        contentContainerStyle={{ paddingHorizontal: 16, gap: 12 ,paddingVertical:20}}
       >
-        {forecastData.map((item) => (
-          <View
-            key={item.date}
-            className="bg-brand-primary rounded-full items-center justify-center gap-4 p-6"
-          >
-            <Text className="text-gray-200">{item.date}</Text>
-            <Feather
-              name={weatherIconMap[item.status]}
-              color="#FFBF00"
-              size={30}
-            />
-            <View>
-              <Text className="text-white text-xl text-center">
-                {item.temperature}
-                {`\u00B0`}
+        {forecastData.map((item) => 
+        {
+          const isFocus = onClick === item.id
+          return (
+            <Pressable
+              onPress={() => {
+                setWeatherInfo?.({
+                  temperature: item.temperature,
+                  chanceOfRain: item.chanceOfRain,
+                });
+                setOnClik(item.id)
+              }}
+              key={item.date}
+              className={`${isFocus ? "bg-brand-primary" : "bg-white"} shadow-xl boarder-[1px] border-gray-100 rounded-full items-center justify-center gap-4 p-6`}
+            >
+              <Text
+                className={`${isFocus ? "text-white" : "text-brand-text-primary"}`}
+              >
+                {item.date}
               </Text>
-              <Text className="text-white text-center">
-                {item.chanceOfRain}
-              </Text>
-            </View>
-          </View>
-        ))}
+              <Feather
+                name={weatherIconMap[item.status]}
+                color="#FFBF00"
+                size={30}
+              />
+              <View>
+                <Text
+                  className={`${isFocus ? "text-white" : "text-brand-text-primary"} text-xl text-center`}
+                >
+                  {item.temperature}
+                  {`\u00B0`}
+                </Text>
+                <Text
+                  className={`${isFocus ? "text-white" : "text-brand-text-primary"} text-center`}
+                >
+                  {item.chanceOfRain}
+                </Text>
+              </View>
+            </Pressable>
+          );
+          }
+        )}
       </ScrollView>
       <View className="bg-gray-200 rounded-3xl overflow-hidden mt-2">
         <Text className="p-6 text-gray-500">

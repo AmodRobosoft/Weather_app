@@ -16,16 +16,20 @@ import {
 } from "react-native";
 
 const LiveRader = () => {
+  const [slectedSwitch,setSlectedSwitch] = useState(1)
   const switchItems = [
     {
+      id:1,
       name: "Rain",
       icon: <Octicons name="stack" color="#000" size={20} />,
     },
     {
+      id:2,
       name: "Strom",
       icon: <Octicons name="stack" color="#000" size={20} />,
     },
     {
+      id:3,
       name: "Wind",
       icon: <Octicons name="stack" color="#000" size={20} />,
     },
@@ -99,22 +103,34 @@ const LiveRader = () => {
         </View>
       </ImageBackground>
       <View className="flex-row gap-2 w-full">
-        {switchItems.map((item, index) => {
+        {switchItems.map((item) => {
+          const isActive = item.id === slectedSwitch
           return (
-            <View
+            <Pressable
               key={item.name}
-              className="flex-1 basis-0 bg-white shadow-xl shadow-black items-center px-6 rounded-[25px] py-2"
+              className={`flex-1 basis-0 items-center px-6 py-2 rounded-[25px] border-[1px] border-gray-100 shadow-xl ${
+                isActive ? "bg-brand-primary " : "bg-white "
+              }`}
+              onPress={() => setSlectedSwitch(item.id)}
             >
-              {item.icon}
-              <Text className="">{item.name}</Text>
-            </View>
+              <Octicons
+                name="stack"
+                color={isActive ? "#fff" : "#222222"}
+                size={20}
+              />
+              <Text
+                className={`${isActive ? "text-white" : "text-brand-text-primary"}`}
+              >
+                {item.name}
+              </Text>
+            </Pressable>
           );
         })}
       </View>
-      <View className="p-4 gap-2 flex-row flex-wrap bg-[#E5E7EB] rounded-[25px]">
+      <View className="p-4 gap-2 md:justify-between flex-row flex-wrap bg-[#E5E7EB] rounded-[25px]">
         <View className="flex-row gap-4">
           {raindBands.map((item, index) => (
-            <View key={item.band} className="items-center gap-2">
+            <View key={item.band} className="items-center gap-2 ">
               <View
                 style={{
                   backgroundColor: item.color,

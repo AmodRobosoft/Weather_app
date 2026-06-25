@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Image,
   Pressable,
@@ -17,6 +17,10 @@ import SavedClimate from "@/components/SavedClimate";
 const HomeScreen = () => {
   const insets = useSafeAreaInsets();
   const TAB_BAR_HEIGHT = 70;
+  const [weatherInfo, setWeatherInfo] = useState({
+    temperature: 24,
+    chanceOfRain: "20%",
+  });
   return (
     <ScrollView
       contentContainerStyle={{
@@ -26,30 +30,46 @@ const HomeScreen = () => {
     >
       <View className="bg-[#7AD0C733] rounded-3xl overflow-hidden mb-10">
         <View className=" py-10 px-6 relative overflow-hidden">
-          <Image
-            source={require("../../assets/WeatherOrb.png")}
-            className="absolute right-0 -top-3 "
-            resizeMode="contain"
-          />
-          <Text className="p-2 bg-white shadow-xl w-40 rounded-full mb-4">
-            8% chance of rain
+          {Number(weatherInfo?.chanceOfRain?.replace("%", "")) < 50 ? (
+            <Image
+              source={require("../../assets/WeatherOrb.png")}
+              className="absolute right-0 -top-3"
+              resizeMode="contain"
+            />
+          ) : (
+            <Image
+              source={require("../../assets/rainClude.png")}
+              className="absolute right-0 -top-3"
+              resizeMode="contain"
+            />
+          )}
+
+          <Text className="p-2 bg-white shadow-xl border-[1px] border-gray-100 w-40 rounded-full mb-4">
+            {weatherInfo.chanceOfRain} chance of rain
           </Text>
           <View className=" py-10  rounded-3xl ">
             <View className="">
               <Text className="text-xl tracking-[3px] uppercase font-semibold text-gray-500">
-                Partly Sunny
+                {Number(weatherInfo?.chanceOfRain?.replace("%", "")) < 50
+                  ? "Partly Sunny"
+                  : "Rain Later"}
               </Text>
 
-              <Text className="text-[150px] font-extrabold ">{`24\u00B0`}</Text>
+              <Text className="text-[150px] font-extrabold ">
+                {weatherInfo.temperature}
+                {`\u00B0`}
+              </Text>
 
-              <Text className="text-2xl w-80">
-                A bright, calm morning. Run before clouds build at 2 PM.
+              <Text className="text-2xl text-wrap">
+                {Number(weatherInfo?.chanceOfRain?.replace("%", "")) < 50
+                  ? "Abright, calm morning. Run before clouds build at 2 PM."
+                  : "Showers roll in after 4 PM. Commute with a compact umbrella."}
               </Text>
             </View>
           </View>
         </View>
 
-        <HourlyAtmosphere />
+        <HourlyAtmosphere setWeatherInfo={setWeatherInfo} />
       </View>
 
       {/* Alert card */}
@@ -76,16 +96,10 @@ const HomeScreen = () => {
         pagingEnabled
         contentContainerClassName=" gap-3 mt-10 "
       >
-        <View
-          style={{ width: 300 }}
-          className="bg-white rounded-3xl p-4"
-        >
+        <View className="bg-white rounded-3xl p-4 w-[300px] md:w-1/2">
           <LiveRader />
         </View>
-        <View
-          style={{ width: 300 }}
-          className="bg-white rounded-3xl p-4"
-        >
+        <View className="bg-white rounded-3xl p-4 w-[300px] md:w-1/2 ">
           <Tripmode />
         </View>
       </ScrollView>
