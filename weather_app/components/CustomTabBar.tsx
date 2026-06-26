@@ -16,13 +16,8 @@ const CustomTabBar = ({ state }: BottomTabBarProps) => {
 
   return (
     <View
-      style={{
-        position: "absolute",
-        bottom: insets.bottom + 12,
-        left: 16,
-        right: 16,
-      }}
-      className="flex-row p-4 justify-between items-center bg-white rounded-3xl shadow-xl"
+      style={{ bottom: insets.bottom + 12 }}
+      className="absolute self-center w-[90%] md:w-[40%] flex-row items-center justify-between rounded-3xl bg-white p-4 shadow-md border-[1px] border-gray-100"
     >
       {TABS.map((tab, index) => {
         const isFocused = state.index === index;

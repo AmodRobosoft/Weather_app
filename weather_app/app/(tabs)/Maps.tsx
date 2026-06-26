@@ -8,13 +8,15 @@ const Maps = () => {
 
   return (
     <ScrollView
+      showsVerticalScrollIndicator={false}
+      keyboardShouldPersistTaps="handled"
       className="flex-1 p-4"
       contentContainerClassName="gap-5"
       contentContainerStyle={{
         paddingBottom: insets.bottom + 130,
       }}
     >
-      <View className="gap-4">
+      <View className="gap-4 md:pt-10">
         <Text className="text-brand-text-secondary tracking-[3px] font-semibold uppercase">
           Map Layers
         </Text>

@@ -104,12 +104,18 @@ const HourlyAtmosphere = ({ setWeatherInfo }: PropsType) => {
       </View>
       <ScrollView
         horizontal
+        keyboardShouldPersistTaps="handled"
+        nestedScrollEnabled={true}
         showsHorizontalScrollIndicator={false}
-        contentContainerStyle={{ paddingHorizontal: 16, gap: 12 ,paddingVertical:20}}
+        contentContainerStyle={{
+          paddingHorizontal: 16,
+          gap: 12,
+          paddingVertical: 20,
+        }}
+        contentContainerClassName=""
       >
-        {forecastData.map((item) => 
-        {
-          const isFocus = onClick === item.id
+        {forecastData.map((item) => {
+          const isFocus = onClick === item.id;
           return (
             <Pressable
               onPress={() => {
@@ -117,10 +123,10 @@ const HourlyAtmosphere = ({ setWeatherInfo }: PropsType) => {
                   temperature: item.temperature,
                   chanceOfRain: item.chanceOfRain,
                 });
-                setOnClik(item.id)
+                setOnClik(item.id);
               }}
               key={item.date}
-              className={`${isFocus ? "bg-brand-primary" : "bg-white"} shadow-xl boarder-[1px] border-gray-100 rounded-full items-center justify-center gap-4 p-6`}
+              className={`${isFocus ? "bg-brand-primary" : "bg-white"} shadow-md boarder-[1px] border-gray-100 rounded-[25px] items-center justify-center gap-4 p-6`}
             >
               <Text
                 className={`${isFocus ? "text-white" : "text-brand-text-primary"}`}
@@ -147,8 +153,7 @@ const HourlyAtmosphere = ({ setWeatherInfo }: PropsType) => {
               </View>
             </Pressable>
           );
-          }
-        )}
+        })}
       </ScrollView>
       <View className="bg-gray-200 rounded-3xl overflow-hidden mt-2">
         <Text className="p-6 text-gray-500">

@@ -2,6 +2,7 @@ import {
   AntDesign,
   Entypo,
   Feather,
+  MaterialCommunityIcons,
   SimpleLineIcons,
 } from "@expo/vector-icons";
 import { LinearGradient } from "expo-linear-gradient";
@@ -99,13 +100,14 @@ const Search = () => {
 
   return (
     <ScrollView
+      showsVerticalScrollIndicator={false}
+      keyboardShouldPersistTaps="handled"
       contentContainerStyle={{
         paddingBottom: insets.bottom + 60 + TAB_BAR_HEIGHT,
       }}
       contentContainerClassName="px-4 gap-5"
     >
-      {/* Header */}
-      <View className="gap-4">
+      <View className="gap-4 md:pt-10">
         <Text className="text-brand-text-secondary tracking-[3px] font-semibold uppercase">
           LOCATIONS
         </Text>
@@ -121,10 +123,10 @@ const Search = () => {
             className="absolute top-5 left-6"
             name="search"
             color="#6B7280"
-            size={25}
+            size={20}
           />
           <TextInput
-            className="pl-14 py-5 text-xl placeholder:text-brand-text-secondary"
+            className="pl-14 py-5 font-semibold  placeholder:text-brand-text-secondary"
             placeholder="City, country, or airport..."
             value={query}
             onChangeText={(text) => {
@@ -146,7 +148,16 @@ const Search = () => {
         {query.length >= 2 && (
           <View className="gap-3 pt-2">
             {error ? (
-              <Text className="text-red-400 px-2">{error}</Text>
+              <View className="h-full justify-center items-center ">
+                <MaterialCommunityIcons
+                  name="city-variant-outline"
+                  color="#fff"
+                  size={30}
+                  className="bg-brand-primary rounded-full p-4 justify-center items-center"
+                />
+
+                <Text className="text-brand-primary px-2 font-bold text-xl">{error}</Text>
+              </View>
             ) : (
               results.map((city) => (
                 <TouchableOpacity
@@ -191,17 +202,22 @@ const Search = () => {
                 <Text className="text-brand-text-secondary">Clear all</Text>
               </TouchableOpacity>
             </View>
-            <View className="flex-row gap-4">
+            <ScrollView
+              horizontal
+              keyboardShouldPersistTaps="handled"
+              contentContainerClassName="py-4 gap-4 px-2"
+              showsHorizontalScrollIndicator={false}
+            >
               {recentSearch.map((recent) => (
                 <TouchableOpacity
                   onPress={() => handleRecentPress(recent)}
                   key={recent}
-                  className="bg-white shadow-xl border-[1px] border-gray-100 rounded-full"
+                  className="bg-white shadow-sm border-[1px] border-gray-100 rounded-full"
                 >
                   <Text className="px-6 py-4 font-semibold">{recent}</Text>
                 </TouchableOpacity>
               ))}
-            </View>
+            </ScrollView>
 
             {/* Saved Cities */}
             <View className="py-4">

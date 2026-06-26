@@ -23,6 +23,8 @@ const HomeScreen = () => {
   });
   return (
     <ScrollView
+      showsVerticalScrollIndicator={false}
+      keyboardShouldPersistTaps="handled"
       contentContainerStyle={{
         paddingBottom: insets.bottom + 60 + TAB_BAR_HEIGHT,
       }}
@@ -44,7 +46,7 @@ const HomeScreen = () => {
             />
           )}
 
-          <Text className="p-2 bg-white shadow-xl border-[1px] border-gray-100 w-40 rounded-full mb-4">
+          <Text className="p-2 bg-white shadow-xl border-[1px] border-gray-100  rounded-full mb-4 text-nowrap self-start">
             {weatherInfo.chanceOfRain} chance of rain
           </Text>
           <View className=" py-10  rounded-3xl ">
@@ -92,6 +94,7 @@ const HomeScreen = () => {
       <WeatherStatsGrid />
       <ScrollView
         horizontal
+        keyboardShouldPersistTaps="handled"
         showsHorizontalScrollIndicator={false}
         pagingEnabled
         contentContainerClassName=" gap-3 mt-10 "

@@ -10,12 +10,12 @@ const CustomHeader = () => {
   return (
     <View
       style={{ marginTop: insets.top }}
-      className="px-4 flex-row justify-between items-center mb-5"
+      className="px-4 flex-row justify-between items-center mb-5 md:absolute md:self-center md:w-[40%] md:top-5 md:z-50 md:bg-white md:p-2 md:rounded-3xl md:shadow-md md:border-[1px] md:border-gray-100"
     >
-      <View className="bg-white py-4 px-4 rounded-3xl shadow-xl ">
+      <View className="bg-white py-4 px-4 rounded-3xl shadow-md ">
         <Feather name="menu" size={24} />
       </View>
-      <View className="bg-white shadow-xl p-4 rounded-3xl ">
+      <View className="bg-white shadow-md p-4 rounded-3xl ">
         <View className="flex-row gap-2">
           <Feather name="send" size={15} />
           <Text className="font-bold">Brooklyn</Text>
@@ -25,10 +25,10 @@ const CustomHeader = () => {
         </Pressable>
       </View>
       <View className="flex-row gap-2 ">
-        <Pressable className="p-4 bg-white shadow-xl rounded-3xl">
+        <Pressable className="p-4 bg-white shadow-md rounded-3xl">
           <Feather name="moon" color="#000" size={24} />
         </Pressable>
-        <Pressable className="p-4 bg-white shadow-xl rounded-3xl">
+        <Pressable className="p-4 bg-white shadow-md rounded-3xl">
           <Feather name="bell" color="#000" size={24} />
         </Pressable>
       </View>
